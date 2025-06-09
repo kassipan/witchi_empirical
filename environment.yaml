@@ -1,0 +1,33 @@
+name: witchi_empirical
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - newick_utils
+  - r-base=4.2
+  - r-ape
+  - r-phytools
+  - r-dplyr
+  - r-tidyr
+  - bioconductor-treeio
+  - r-tidytree
+  - r-jsonlite
+  - r-ggplot2
+  - r-scales
+  - r-data.table
+  - r-stringi
+  - r-stringr
+  - r-patchwork
+  - r-forcats
+  - pip:
+      - hmmlearn==0.3.0
+      - scikit-learn==1.2.2
+      - biopython>=1.83
+      - numpy>=1.23.5
+      - pandas>=1.5.3
+      - bacdive>=0.2
+      - git+https://github.com/cultivarium/GenomeSPOT.git
+      - -r https://raw.githubusercontent.com/cultivarium/GenomeSPOT/main/requirements.txt
