@@ -1,5 +1,13 @@
 #!/usr/bin/env Rscript
 
+#Function to rename labels in tree if identical
+make_unique_labels <- function(labels){
+  data.frame(label = labels) %>%
+    group_by(label) %>%
+    mutate(new_label = if (n() == 1) label else paste0(label, "_par", row_number())) %>%
+    pull(new_label)
+}
+
 #Function to get offspring labels of a node 
 getOffspringLabels <- function(tree, node) {
   
