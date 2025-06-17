@@ -30,10 +30,16 @@ collapse_df <- read.table(collapse_tsv, sep = "\t", header = TRUE,
 tree_full_collapsed <- collapse_tree_to_clades(tree = tree_full, mapping_df = collapse_df, tip_name = "tip_label", level = "class")
 tree_full_collapsed_renamed <- rename_tree_tips(tree_full_collapsed, collapse_df, tip_name = "tip_label", level = "class")
 tree_full_collapsed_renamed$tip.label <- gsub("^c__", "", tree_full_collapsed_renamed$tip.label)
+#Write tree in file
+write.tree(tree_full_collapsed_renamed, file = "trees/ar53_r220.tree.renamed.mod_classCollapsed.newick")
 
 tree_pruned_collapsed <- collapse_tree_to_clades(tree = tree_pruned, mapping_df = collapse_df, tip_name = "tip_label", level = "class")
 tree_pruned_collapsed_renamed <- rename_tree_tips(tree_pruned_collapsed, collapse_df, tip_name = "tip_label", level = "class")
 tree_pruned_collapsed_renamed$tip.label <- gsub("^c__", "", tree_pruned_collapsed_renamed$tip.label)
+#Write tree in file
+tree_pruned_collapsed_renamed.mod <- tree_pruned_collapsed_renamed
+tree_pruned_collapsed_renamed.mod$tip.label <- make_unique_labels(tree_pruned_collapsed_renamed.mod$tip.label)
+write.tree(tree_pruned_collapsed_renamed.mod, file = "trees/ar53_msa_reps_r220_squared_s10_pruned60.dpann.root_classCollapsed.newick")
 
 #plot.phylo(tree_full_collapsed_renamed, type = "phylogram", edge.width = 1, show.node.label = TRUE)
 #title("Collapsed Full Tree")
@@ -193,10 +199,16 @@ dev.off()
 tree_full_collapsed <- collapse_tree_to_clades(tree = tree_full, mapping_df = collapse_df, tip_name = "tip_label", level = "phylum")
 tree_full_collapsed_renamed <- rename_tree_tips(tree_full_collapsed, collapse_df, tip_name = "tip_label", level = "phylum")
 tree_full_collapsed_renamed$tip.label <- gsub("^p__", "", tree_full_collapsed_renamed$tip.label)
+#Write tree to file
+write.tree(tree_full_collapsed_renamed, file = "trees/ar53_r220.tree.renamed.mod_phylumCollapsed.newick")
 
 tree_pruned_collapsed <- collapse_tree_to_clades(tree = tree_pruned, mapping_df = collapse_df, tip_name = "tip_label", level = "phylum")
 tree_pruned_collapsed_renamed <- rename_tree_tips(tree_pruned_collapsed, collapse_df, tip_name = "tip_label", level = "phylum")
 tree_pruned_collapsed_renamed$tip.label <- gsub("^p__", "", tree_pruned_collapsed_renamed$tip.label)
+#Write tree to file
+tree_pruned_collapsed_renamed.mod <- tree_pruned_collapsed_renamed
+tree_pruned_collapsed_renamed.mod$tip.label <- make_unique_labels(tree_pruned_collapsed_renamed.mod$tip.label)
+write.tree(tree_pruned_collapsed_renamed.mod, file = "trees/ar53_msa_reps_r220_squared_s10_pruned60.dpann.root_phylumCollapsed.newick")
 
 #plot.phylo(tree_full_collapsed_renamed, type = "phylogram", edge.width = 1, show.node.label = TRUE)
 #title("Collapsed Full Tree")
